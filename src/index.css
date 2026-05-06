@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lex-navy: #1e3a5f;
+  --lex-navy-2: #16304e;
+  --lex-navy-3: #0f2238;
+  --lex-blue: #2b6cb0;
+  --lex-blue-soft: #e8f0f9;
+  --lex-bg: #f7fafc;
+  --lex-text: #1a202c;
+  --lex-text-2: #4a5568;
+  --lex-text-3: #718096;
+  --lex-border: #e2e8f0;
+  --lex-success: #2f855a;
+  --lex-success-bg: #f0fff4;
+  --lex-warn: #b7791f;
+  --lex-warn-bg: #fffaf0;
+  --lex-danger: #c53030;
+  --lex-danger-bg: #fff5f5;
+  --lex-pro: #805ad5;
+  --lex-pro-bg: #faf5ff;
+  --sidebar-width: 248px;
+  --topbar-height: 60px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--lex-bg);
+  color: var(--lex-text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  /* Sidebar */
+  .lex-sidebar {
+    @apply fixed top-0 left-0 h-full flex flex-col overflow-y-auto;
+    width: var(--sidebar-width);
+    background: var(--lex-navy);
+    z-index: 50;
+  }
+
+  /* Nav item */
+  .lex-nav-item {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg mx-2 text-sm font-medium transition-all duration-150 cursor-pointer;
+    color: rgba(255,255,255,0.7);
+  }
+  .lex-nav-item:hover {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.95);
+  }
+  .lex-nav-item.active {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  .lex-nav-item.active svg {
+    opacity: 1;
+  }
+  .lex-nav-item svg {
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+  .lex-nav-item:hover svg {
+    opacity: 0.9;
+  }
+
+  /* Card */
+  .lex-card {
+    @apply rounded-xl border bg-white;
+    border-color: var(--lex-border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  /* Buttons */
+  .lex-btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer border-0;
+  }
+  .lex-btn-primary {
+    @apply lex-btn text-white;
+    background: var(--lex-blue);
+  }
+  .lex-btn-primary:hover {
+    background: #2558a0;
+  }
+  .lex-btn-navy {
+    @apply lex-btn text-white;
+    background: var(--lex-navy);
+  }
+  .lex-btn-navy:hover {
+    background: var(--lex-navy-2);
+  }
+  .lex-btn-ghost {
+    @apply lex-btn bg-transparent;
+    color: var(--lex-text-2);
+    border: 1px solid var(--lex-border) !important;
+  }
+  .lex-btn-ghost:hover {
+    background: var(--lex-bg);
+    color: var(--lex-text);
+  }
+  .lex-btn-danger {
+    @apply lex-btn text-white;
+    background: var(--lex-danger);
+  }
+  .lex-btn-danger:hover {
+    background: #9b2c2c;
+  }
+  .lex-btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .lex-btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  /* Form inputs */
+  .lex-input {
+    @apply w-full rounded-lg px-3 py-2 text-sm outline-none transition-all duration-150;
+    background: #fff;
+    border: 1px solid var(--lex-border);
+    color: var(--lex-text);
+  }
+  .lex-input:focus {
+    border-color: var(--lex-blue);
+    box-shadow: 0 0 0 3px rgba(43,108,176,0.12);
+  }
+  .lex-input::placeholder {
+    color: var(--lex-text-3);
+  }
+  .lex-select {
+    @apply lex-input appearance-none cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23718096' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  .lex-label {
+    @apply block text-xs font-semibold uppercase tracking-wide mb-1;
+    color: var(--lex-text-3);
+  }
+
+  /* Table */
+  .lex-table {
+    @apply w-full border-collapse;
+  }
+  .lex-table th {
+    @apply text-left px-4 py-3 text-xs font-semibold uppercase tracking-wide border-b;
+    color: var(--lex-text-3);
+    border-color: var(--lex-border);
+    background: #fafbfc;
+  }
+  .lex-table td {
+    @apply px-4 py-3 text-sm border-b;
+    color: var(--lex-text);
+    border-color: var(--lex-border);
+  }
+  .lex-table tr:last-child td {
+    border-bottom: none;
+  }
+  .lex-table tbody tr:hover td {
+    background: var(--lex-bg);
+    cursor: pointer;
+  }
+
+  /* Status pills */
+  .lex-pill {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+  .lex-pill-rascunho {
+    @apply lex-pill;
+    background: #edf2f7;
+    color: var(--lex-text-3);
+  }
+  .lex-pill-enviada {
+    @apply lex-pill;
+    background: var(--lex-blue-soft);
+    color: var(--lex-blue);
+  }
+  .lex-pill-aceita {
+    @apply lex-pill;
+    background: var(--lex-success-bg);
+    color: var(--lex-success);
+  }
+  .lex-pill-recusada {
+    @apply lex-pill;
+    background: var(--lex-danger-bg);
+    color: var(--lex-danger);
+  }
+  .lex-pill-pro {
+    @apply lex-pill;
+    background: var(--lex-pro-bg);
+    color: var(--lex-pro);
+  }
+
+  /* Section title */
+  .lex-section-title {
+    @apply text-xs font-semibold uppercase tracking-widest mb-2 px-2;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* Summary value */
+  .lex-value-lg {
+    @apply font-display font-bold;
+    font-size: 2rem;
+    line-height: 1.15;
+    color: var(--lex-navy);
+  }
+  .lex-value-md {
+    @apply font-display font-bold text-xl;
+    color: var(--lex-navy);
+  }
+
+  /* Tab */
+  .lex-tab {
+    @apply px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-150 cursor-pointer border-0;
+    color: var(--lex-text-2);
+    background: transparent;
+  }
+  .lex-tab:hover {
+    color: var(--lex-text);
+    background: var(--lex-bg);
+  }
+  .lex-tab.active {
+    background: #fff;
+    color: var(--lex-navy);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  /* Metric card */
+  .lex-metric-card {
+    @apply lex-card p-5 flex flex-col gap-1;
+  }
+
+  /* Drawer */
+  .lex-drawer {
+    @apply fixed top-0 right-0 h-full bg-white shadow-2xl z-50 flex flex-col transition-transform duration-300;
+    width: 420px;
+    border-left: 1px solid var(--lex-border);
+  }
+  .lex-drawer.closed {
+    transform: translateX(100%);
+  }
+  .lex-overlay {
+    @apply fixed inset-0 bg-black/30 z-40;
+  }
+
+  /* Divider */
+  .lex-divider {
+    @apply border-t my-4;
+    border-color: var(--lex-border);
+  }
+
+  /* Badge */
+  .lex-badge {
+    @apply inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold text-white;
+    background: var(--lex-danger);
+  }
+
+  /* Empty state */
+  .lex-empty {
+    @apply flex flex-col items-center justify-center py-16 text-center;
+    color: var(--lex-text-3);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--lex-border); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #cbd5e0; }
+}
