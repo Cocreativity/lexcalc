@@ -33,7 +33,7 @@ body {
   font-family: 'Times New Roman', serif;
   color: #1a202c;
   background: white;
-  padding: 48px;
+  padding: 20px 24px;
   font-size: 13px;
   line-height: 1.7;
 }
@@ -310,7 +310,7 @@ export default function PropostaGen() {
 
       await html2pdf()
         .set({
-          margin: 0,
+          margin: [12, 12, 12, 12],
           filename,
           image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { scale: 2, useCORS: true, logging: false },

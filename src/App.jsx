@@ -8,6 +8,7 @@ import Propostas from './pages/Propostas'
 import PropostaGen from './pages/PropostaGen'
 import Clientes from './pages/Clientes'
 import Configuracoes from './pages/Configuracoes'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
@@ -31,6 +32,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route
         path="/"
         element={
